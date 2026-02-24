@@ -1,205 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage Snowboard 1990s - 2000s</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<title>Vintage Snowboard 1990s - 2000s</title>
 
-        h1 {
-            text-align: center;
-            padding: 20px;
-            background-color: #3e8e41;
-            color: white;
-            margin: 0;
-            font-size: 2.5em;
-            letter-spacing: 1px;
-            width: 100%;
-        }
+<style>
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+    margin: 20px;
+}
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
 
-        .gallery-item {
-            text-align: center;
-            width: 220px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
+.gallery img {
+    width: 220px;
+    height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
+.gallery img:hover {
+    transform: scale(1.05);
+}
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            max-width: 220px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
 
-        .gallery-item h3 {
-            margin-top: 10px;
-            font-size: 1.1em;
-        }
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-        /* Lightbox Styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding-top: 60px;
-            overflow: auto;
-            text-align: center;
-        }
+.modal-content {
+    position: relative;
+    text-align: left; /* Align caption to left */
+    max-width: 90vw;
+}
 
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-            margin: auto;
-        }
+.image-frame {
+    display: block; /* Ensure image is block */
+    padding: 4px;
+    border-radius: 12px;
+    background: linear-gradient(
+        45deg,
+        #ff3c00,
+        #ffcc00,
+        #00e0ff,
+        #ff3c00
+    );
+    background-size: 300% 300%;
+    animation: borderMove 6s linear infinite;
+    margin-bottom: 10px; /* space below image for caption */
+}
 
-        .lightbox-content img {
-            width: 100%;
-            height: auto;
-        }
+@keyframes borderMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
 
-        .lightbox-title {
-            font-size: 1.5em;
-            color: white;
-            padding-top: 15px;
-            text-align: center;
-        }
+.modal img {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
 
-        .close {
-            color: white;
-            font-size: 36px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
+.modal img.zoomed {
+    transform: scale(2.2);
+    cursor: zoom-out;
+}
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .gallery-item {
-                width: 45%;
-            }
+.caption {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    display: block; /* force block to stay below image */
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 8px;
+    width: fit-content; /* wrap content */
+    text-align: left;
+    margin-left: 0; /* align to left of modal content */
+}
 
-            h1 {
-                font-size: 2em;
-            }
-        }
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+}
 
-        @media (max-width: 480px) {
-            .gallery-item {
-                width: 100%;
-            }
+.arrow.left { left: -60px; }
+.arrow.right { right: -60px; }
 
-            h1 {
-                font-size: 1.8em;
-            }
-        }
-    </style>
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+@media(max-width:768px){
+    .gallery img {
+        width: 45%;
+        height: auto;
+    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Vintage Snowboard 1990s - 2000s</h1>
+<h1>Vintage Snowboard 1990s - 2000s</h1>
 
-    <div class="gallery">
-        <!-- Burton Section -->
-        <div class="gallery-item" onclick="openLightbox('burton_air_5_1.jpeg', 'Burton Air 5.1 - 1992')">
-            <img src="burton_air_5_1.jpeg" alt="Burton Air 5.1" title="Burton Air 5.1 - 1992">
-            <h3>Burton Air 5.1 - 1992</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('burton_air_asym_6.jpeg', 'Burton Air Asym 6 - 1994')">
-            <img src="burton_air_asym_6.jpeg" alt="Burton Air Asym 6" title="Burton Air Asym 6 - 1994">
-            <h3>Burton Air Asym 6 - 1994</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('burton_custom_1997.jpeg', 'Burton Custom 1997')">
-            <img src="burton_custom_1997.jpeg" alt="Burton Custom 1997" title="Burton Custom 1997">
-            <h3>Burton Custom - 1997</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('burton_custom_2003.jpeg', 'Burton Custom 2003')">
-            <img src="burton_custom_2003.jpeg" alt="Burton Custom 2003" title="Burton Custom 2003">
-            <h3>Burton Custom - 2003</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('burton_custom_2005.jpeg', 'Burton Custom 2005')">
-            <img src="burton_custom_2005.jpeg" alt="Burton Custom 2005" title="Burton Custom 2005">
-            <h3>Burton Custom - 2005</h3>
-        </div>
+<div class="gallery">
+<img src="burton_air_5_1.jpeg" title="Burton Air 5.1 (1992)">
+<img src="burton_air_asym_6.jpeg" title="Burton Air Asym 6 (1994)">
+<img src="burton_custom_1997.jpeg" title="Burton Custom (1997)">
+<img src="burton_custom_2003.jpeg" title="Burton Custom (2003)">
+<img src="burton_custom_2005.jpeg" title="Burton Custom (2005)">
+<img src="gnu_carbon_high_beam.jpeg" title="GNU Carbon High Beam (2001)">
+<img src="k2_dubble_wide.jpeg" title="K2 Dubble Wide (1996)">
+<img src="k2_eldorado.jpeg" title="K2 Eldorado (1997)">
+<img src="k2_fatbob.jpeg" title="K2 Fatbob (1998)">
+<img src="k2_original_fatty.jpeg" title="K2 Original Fatty (1995)">
+<img src="k2_spitfire.jpeg" title="K2 Spitfire (2002)">
+<img src="k2_zeppelin.jpeg" title="K2 Zeppelin (1996)">
+<img src="libtech_dave_lee_girrafe.jpeg" title="LibTech Dave Lee Giraffes (1999)">
+<img src="nitro_glide_52.jpeg" title="Nitro Glide 52 (2002)">
+<img src="palmer_classic.jpeg" title="Palmer Classic (2002)">
+<img src="ride_society.jpeg" title="Ride Society (2008)">
+<img src="ride_timeless.jpeg" title="Ride Timeless (2001)">
+<img src="rossignol_dazer.jpeg" title="Rossignol Dazer (2001)">
+<img src="rossignol_district.jpeg" title="Rossignol District (2009)">
+<img src="rossignol_nomad2.jpeg" title="Rossignol Nomad 2 (2001)">
+<img src="rossignol_sonar.jpeg" title="Rossignol Sonar (2005)">
+<img src="salomon_dt_146.jpeg" title="Salomon DT-146 (1997)">
+<img src="salomon_d_154.jpeg" title="Salomon D-154 (1997)">
+<img src="salomon_lily.jpeg" title="Salomon Lily (2008)">
+<img src="sims_descender_57.jpeg" title="Sims Descender 57 (1998)">
+<img src="sims_fs600.jpeg" title="Sims FS600 (2001)">
+<img src="sims_infinity_157.jpeg" title="Sims Infinity 157 (2003)">
+<img src="sims_quest_50.jpeg" title="Sims Quest 50 (1995)">
+<img src="sims_search_61.jpeg" title="Sims Search 61 (1997)">
+<img src="sims_solace_144.jpeg" title="Sims Solace 144 (2006)">
+</div>
 
-        <!-- Sims Section -->
-        <div class="gallery-item" onclick="openLightbox('sims_quest_50.jpeg', 'Sims Quest 50 - 1995')">
-            <img src="sims_quest_50.jpeg" alt="Sims Quest 50" title="Sims Quest 50 - 1995">
-            <h3>Sims Quest 50 - 1995</h3>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">✕</span>
+        <span class="arrow left" onclick="prevImage()">❮</span>
+        <div class="image-frame">
+            <img id="modalImg">
         </div>
-        <div class="gallery-item" onclick="openLightbox('sims_search_61.jpeg', 'Sims Search 61 - 1997')">
-            <img src="sims_search_61.jpeg" alt="Sims Search 61" title="Sims Search 61 - 1997">
-            <h3>Sims Search 61 - 1997</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('sims_descender_57.jpeg', 'Sims Descender 57 - 1998')">
-            <img src="sims_descender_57.jpeg" alt="Sims Descender 57" title="Sims Descender 57 - 1998">
-            <h3>Sims Descender 57 - 1998</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('sims_fs600.jpeg', 'Sims FS600 - 2001')">
-            <img src="sims_fs600.jpeg" alt="Sims FS600" title="Sims FS600 - 2001">
-            <h3>Sims FS600 - 2001</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('sims_infinity_157.jpeg', 'Sims Infinity 157 - 2003')">
-            <img src="sims_infinity_157.jpeg" alt="Sims Infinity 157" title="Sims Infinity 157 - 2003">
-            <h3>Sims Infinity 157 - 2003</h3>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('sims_solace_144.jpeg', 'Sims Solace 144 - 2006')">
-            <img src="sims_solace_144.jpeg" alt="Sims Solace 144" title="Sims Solace 144 - 2006">
-            <h3>Sims Solace 144 - 2006</h3>
-        </div>
+        <span class="arrow right" onclick="nextImage()">❯</span>
+        <div class="caption" id="caption"></div>
     </div>
+</div>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="close" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-            <div id="lightbox-title" class="lightbox-title"></div>
-        </div>
-    </div>
+<script>
+const images = document.querySelectorAll(".gallery img");
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const caption = document.getElementById("caption");
+let currentIndex = 0;
 
-    <script>
-        // Function to open the lightbox with the clicked image and title
-        function openLightbox(imageSrc, title) {
-            document.getElementById("lightbox-img").src = imageSrc;
-            document.getElementById("lightbox-title").innerText = title;
-            document.getElementById("lightbox").style.display = "block";
-        }
+images.forEach((img, index)=>{
+    img.addEventListener("click", ()=>{
+        currentIndex = index;
+        openModal();
+    });
+});
 
-        // Function to close the lightbox
+function openModal(){
+    modal.classList.add("active");
+    updateModal();
+}
+
+function closeModal(){
+    modal.classList.remove("active");
+    modalImg.classList.remove("zoomed");
+}
+
+function updateModal(){
+    const img = images[currentIndex];
+    modalImg.src = img.src;
+    caption.textContent = img.title;
+}
+
+function nextImage(){
+    currentIndex = (currentIndex + 1) % images.length;
+    updateModal();
+}
+
+function prevImage(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateModal();
+}
+
+modalImg.addEventListener("click", ()=>{
+    modalImg.classList.toggle("zoomed");
+});
+
+document.addEventListener("keydown", e=>{
+    if(!modal.classList.contains("active")) return;
+    if(e.key === "ArrowRight") nextImage();
+    if(e.key === "ArrowLeft") prevImage();
+    if(e.key === "Escape") closeModal();
+});
+</script>
+
+</body>
+</html>
