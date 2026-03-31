@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Vintage Snowboard 1990s - 2000s</title>
+<title>Snowboard Gallery (1989 - 2009)</title>
 
 <style>
 body {
@@ -20,8 +20,15 @@ body {
     justify-content: center;
 }
 
-.gallery img {
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 220px;
+}
+
+.gallery-item img {
+    width: 100%;
     height: 400px;
     object-fit: cover;
     cursor: pointer;
@@ -29,8 +36,15 @@ body {
     transition: transform 0.2s ease;
 }
 
-.gallery img:hover {
+.gallery-item img:hover {
     transform: scale(1.05);
+}
+
+.image-title {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* Modal */
@@ -54,12 +68,12 @@ body {
 
 .modal-content {
     position: relative;
-    text-align: left; /* Align caption to left */
+    text-align: left;
     max-width: 90vw;
 }
 
 .image-frame {
-    display: block; /* Ensure image is block */
+    display: block;
     padding: 4px;
     border-radius: 12px;
     background: linear-gradient(
@@ -71,7 +85,7 @@ body {
     );
     background-size: 300% 300%;
     animation: borderMove 6s linear infinite;
-    margin-bottom: 10px; /* space below image for caption */
+    margin-bottom: 10px;
 }
 
 @keyframes borderMove {
@@ -98,13 +112,13 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     color: #fff;
-    display: block; /* force block to stay below image */
+    display: block;
     padding: 6px 12px;
     background: rgba(0,0,0,0.6);
     border-radius: 8px;
-    width: fit-content; /* wrap content */
+    width: fit-content;
     text-align: left;
-    margin-left: 0; /* align to left of modal content */
+    margin-left: 0;
 }
 
 .arrow {
@@ -130,9 +144,8 @@ body {
 }
 
 @media(max-width:768px){
-    .gallery img {
+    .gallery-item {
         width: 45%;
-        height: auto;
     }
     .arrow.left { left: 10px; }
     .arrow.right { right: 10px; }
@@ -142,56 +155,224 @@ body {
 
 <body>
 
-<h1>Vintage Snowboard Collection (1989 - 2009)</h1>
+<h1>Snowboard Gallery (1989 - 2009)</h1>
 
 <div class="gallery">
-<img src="kemper_rampage.jpeg" title="Kemper Rampage 160 (1989)">
-<img src="burton_cruise.jpeg" title="Burton Cruise 165 (1989)">
-<img src="burton_air_5_1.jpeg" title="Burton Air 5.1 (1992)">
-<img src="burton_air_asym_6.jpeg" title="Burton Air Asym 6 (1994)">
-<img src="burton_a_39.jpeg" title="Burton A Deck 39 (1996)">
-<img src="burton_a_45.jpeg" title="Burton A Deck 45 (1996)">
-<img src="burton_a_55.jpeg" title="Burton A Deck 55 (1997)">
-<img src="burton_a_59.jpeg" title="Burton A Deck 59 (1997)">
-<img src="burton_t_43.jpeg" title="Burton T Deck 43 (1997)">
-<img src="burton_e_56.jpeg" title="Burton E Deck 56 (1997)">
-<img src="burton_custom_1997.jpeg" title="Burton Custom (1997)">
-<img src="burton_cascade.jpeg" title="Burton Cascade 159 (2001)">
-<img src="burton_motion.jpeg" title="Burton Motion 152 (2002)">
-<img src="burton_custom_2003.jpeg" title="Burton Custom (2003)">
-<img src="burton_custom_2004.jpeg" title="Burton Custom (2004)">
-<img src="burton_custom_2005.jpeg" title="Burton Custom (2005)">
-<img src="burton_air.jpeg" title="Burton Air (2006)">
-<img src="sims_fs750w_tinabasich.jpeg" title="Sims Tina Basich 152 (1994)">
-<img src="sims_quest_50.jpeg" title="Sims Quest 50 (1995)">
-<img src="sims_search_61.jpeg" title="Sims Search 61 (1997)">
-<img src="sims_descender_57.jpeg" title="Sims Descender 57 (1998)">
-<img src="sims_infinity_157.jpeg" title="Sims Infinity 157 (2003)">
-<img src="sims_fs600.jpeg" title="Sims FS600 (2001)">
-<img src="sims_citrine.jpeg" title="Sims Citrine 144 (2006)">
-<img src="sims_solace_144.jpeg" title="Sims Solace 144 (2006)">
-<img src="k2_original_fatty.jpeg" title="K2 Original Fatty (1995)">
-<img src="k2_zeppelin.jpeg" title="K2 Zeppelin (1996)">
-<img src="k2_dubble_wide.jpeg" title="K2 Dubble Wide (1996)">
-<img src="k2_eldorado.jpeg" title="K2 Eldorado (1997)">
-<img src="k2_fatbob.jpeg" title="K2 Fatbob (1998)">
-<img src="k2_spitfire.jpeg" title="K2 Spitfire (2002)">
-<img src="libtech_dave_lee_girrafe.jpeg" title="LibTech Dave Lee Giraffes (1999)">
-<img src="gnu_carbon_high_beam.jpeg" title="GNU Carbon High Beam (2001)">
-<img src="nitro_glide_52.jpeg" title="Nitro Glide 52 (2002)">
-<img src="palmer_honey_circle.jpeg" title="Palmer Honey Circle (2002)">
-<img src="palmer_honey_pro.jpeg" title="Palmer Honey Pro (2002)">
-<img src="palmer_classic.jpeg" title="Palmer Classic (2002)">
-<img src="rossignol_dazer.jpeg" title="Rossignol Dazer (2001)">
-<img src="rossignol_nomad2.jpeg" title="Rossignol Nomad 2 (2001)">
-<img src="rossignol_sonar.jpeg" title="Rossignol Sonar (2005)">
-<img src="rossignol_district.jpeg" title="Rossignol District (2009)">
-<img src="salomon_dt_146.jpeg" title="Salomon DT-146 (1997)">
-<img src="salomon_d_154.jpeg" title="Salomon D-154 (1997)">
-<img src="salomon_lily.jpeg" title="Salomon Lily (2008)">
-<img src="ride_timeless.jpeg" title="Ride Timeless (2001)">
-<img src="ride_society.jpeg" title="Ride Society (2008)">
-<img src="volkl_lufthansa.jpeg" title="Volkl Lufthansa (2006)">
+  <!-- 1989 -->
+  <div class="gallery-item">
+    <img src="kemper_rampage.jpeg" title="Kemper Rampage 160 (1989)">
+    <div class="image-title">Kemper Rampage 160 (1989)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_cruise.jpeg" title="Burton Cruise 165 (1989)">
+    <div class="image-title">Burton Cruise 165 (1989)</div>
+  </div>
+
+  <!-- 1992 -->
+  <div class="gallery-item">
+    <img src="burton_air_5_1.jpeg" title="Burton Air 5.1 (1992)">
+    <div class="image-title">Burton Air 5.1 (1992)</div>
+  </div>
+
+  <!-- 1994 -->
+  <div class="gallery-item">
+    <img src="burton_air_asym_6.jpeg" title="Burton Air Asym 6 (1994)">
+    <div class="image-title">Burton Air Asym 6 (1994)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_fs750w_tinabasich.jpeg" title="Sims Tina Basich 152 (1994)">
+    <div class="image-title">Sims Tina Basich 152 (1994)</div>
+  </div>
+
+  <!-- 1995 -->
+  <div class="gallery-item">
+    <img src="sims_quest_50.jpeg" title="Sims Quest 50 (1995)">
+    <div class="image-title">Sims Quest 50 (1995)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="k2_original_fatty.jpeg" title="K2 Original Fatty (1995)">
+    <div class="image-title">K2 Original Fatty (1995)</div>
+  </div>
+
+  <!-- 1996 -->
+  <div class="gallery-item">
+    <img src="burton_a_39.jpeg" title="Burton A Deck 39 (1996)">
+    <div class="image-title">Burton A Deck 39 (1996)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_a_45.jpeg" title="Burton A Deck 45 (1996)">
+    <div class="image-title">Burton A Deck 45 (1996)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="k2_zeppelin.jpeg" title="K2 Zeppelin (1996)">
+    <div class="image-title">K2 Zeppelin (1996)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="k2_dubble_wide.jpeg" title="K2 Dubble Wide (1996)">
+    <div class="image-title">K2 Dubble Wide (1996)</div>
+  </div>
+
+  <!-- 1997 -->
+  <div class="gallery-item">
+    <img src="burton_a_55.jpeg" title="Burton A Deck 55 (1997)">
+    <div class="image-title">Burton A Deck 55 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_a_59.jpeg" title="Burton A Deck 59 (1997)">
+    <div class="image-title">Burton A Deck 59 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_t_43.jpeg" title="Burton T Deck 43 (1997)">
+    <div class="image-title">Burton T Deck 43 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_e_56.jpeg" title="Burton E Deck 56 (1997)">
+    <div class="image-title">Burton E Deck 56 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="burton_custom_1997.jpeg" title="Burton Custom (1997)">
+    <div class="image-title">Burton Custom (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_search_61.jpeg" title="Sims Search 61 (1997)">
+    <div class="image-title">Sims Search 61 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="salomon_dt_146.jpeg" title="Salomon DT-146 (1997)">
+    <div class="image-title">Salomon DT-146 (1997)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="salomon_d_154.jpeg" title="Salomon D-154 (1997)">
+    <div class="image-title">Salomon D-154 (1997)</div>
+  </div>
+
+  <!-- 1998 -->
+  <div class="gallery-item">
+    <img src="sims_descender_57.jpeg" title="Sims Descender 57 (1998)">
+    <div class="image-title">Sims Descender 57 (1998)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="k2_fatbob.jpeg" title="K2 Fatbob (1998)">
+    <div class="image-title">K2 Fatbob (1998)</div>
+  </div>
+
+  <!-- 1999 -->
+  <div class="gallery-item">
+    <img src="libtech_dave_lee_girrafe.jpeg" title="LibTech Dave Lee Giraffes (1999)">
+    <div class="image-title">LibTech Dave Lee Giraffes (1999)</div>
+  </div>
+
+  <!-- 2001 -->
+  <div class="gallery-item">
+    <img src="burton_cascade.jpeg" title="Burton Cascade 159 (2001)">
+    <div class="image-title">Burton Cascade 159 (2001)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_fs600.jpeg" title="Sims FS600 (2001)">
+    <div class="image-title">Sims FS600 (2001)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="gnu_carbon_high_beam.jpeg" title="GNU Carbon High Beam (2001)">
+    <div class="image-title">GNU Carbon High Beam (2001)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="rossignol_dazer.jpeg" title="Rossignol Dazer (2001)">
+    <div class="image-title">Rossignol Dazer (2001)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="rossignol_nomad2.jpeg" title="Rossignol Nomad 2 (2001)">
+    <div class="image-title">Rossignol Nomad 2 (2001)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="ride_timeless.jpeg" title="Ride Timeless (2001)">
+    <div class="image-title">Ride Timeless (2001)</div>
+  </div>
+
+  <!-- 2002 -->
+  <div class="gallery-item">
+    <img src="burton_motion.jpeg" title="Burton Motion 152 (2002)">
+    <div class="image-title">Burton Motion 152 (2002)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="k2_spitfire.jpeg" title="K2 Spitfire (2002)">
+    <div class="image-title">K2 Spitfire (2002)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="nitro_glide_52.jpeg" title="Nitro Glide 52 (2002)">
+    <div class="image-title">Nitro Glide 52 (2002)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="palmer_honey_circle.jpeg" title="Palmer Honey Circle (2002)">
+    <div class="image-title">Palmer Honey Circle (2002)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="palmer_honey_pro.jpeg" title="Palmer Honey Pro (2002)">
+    <div class="image-title">Palmer Honey Pro (2002)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="palmer_classic.jpeg" title="Palmer Classic (2002)">
+    <div class="image-title">Palmer Classic (2002)</div>
+  </div>
+
+  <!-- 2003 -->
+  <div class="gallery-item">
+    <img src="burton_custom_2003.jpeg" title="Burton Custom (2003)">
+    <div class="image-title">Burton Custom (2003)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_infinity_157.jpeg" title="Sims Infinity 157 (2003)">
+    <div class="image-title">Sims Infinity 157 (2003)</div>
+  </div>
+
+  <!-- 2004 -->
+  <div class="gallery-item">
+    <img src="burton_custom_2004.jpeg" title="Burton Custom (2004)">
+    <div class="image-title">Burton Custom (2004)</div>
+  </div>
+
+  <!-- 2005 -->
+  <div class="gallery-item">
+    <img src="burton_custom_2005.jpeg" title="Burton Custom (2005)">
+    <div class="image-title">Burton Custom (2005)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="rossignol_sonar.jpeg" title="Rossignol Sonar (2005)">
+    <div class="image-title">Rossignol Sonar (2005)</div>
+  </div>
+
+  <!-- 2006 -->
+  <div class="gallery-item">
+    <img src="burton_air.jpeg" title="Burton Air (2006)">
+    <div class="image-title">Burton Air (2006)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_citrine.jpeg" title="Sims Citrine 144 (2006)">
+    <div class="image-title">Sims Citrine 144 (2006)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="sims_solace_144.jpeg" title="Sims Solace 144 (2006)">
+    <div class="image-title">Sims Solace 144 (2006)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="volkl_lufthansa.jpeg" title="Volkl Lufthansa (2006)">
+    <div class="image-title">Volkl Lufthansa (2006)</div>
+  </div>
+
+  <!-- 2008 -->
+  <div class="gallery-item">
+    <img src="salomon_lily.jpeg" title="Salomon Lily (2008)">
+    <div class="image-title">Salomon Lily (2008)</div>
+  </div>
+  <div class="gallery-item">
+    <img src="ride_society.jpeg" title="Ride Society (2008)">
+    <div class="image-title">Ride Society (2008)</div>
+  </div>
+
+  <!-- 2009 -->
+  <div class="gallery-item">
+    <img src="rossignol_district.jpeg" title="Rossignol District (2009)">
+    <div class="image-title">Rossignol District (2009)</div>
+  </div>
 </div>
 
 <div class="modal" id="modal">
@@ -260,4 +441,3 @@ document.addEventListener("keydown", e=>{
 
 </body>
 </html>
-
